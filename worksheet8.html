@@ -47,7 +47,7 @@
 			 * jQuery load() method
 			 * -loads data from a server & inserts returned data into selected element
 			 */
-			//$('#result').load('test.html');
+			// $('#result').load('test.html');
 
 			 /**
 			 * jquery load() method with optional callback function
@@ -58,13 +58,13 @@
 			 *  2 - statusTxt - contains the status of the call
 			 *  3 - xhr - contains the XMLHttpRequest object
 			 */
-			// $('#result').load('test.html', function(responseTxt, statusTxt, xhr) {
-			// 	if(statusTxt == 'success') {
-			// 		alert('Everything went fine');
-			// 	} else if(statusTxt == 'error') {
-			// 		alert('Error: ' + xhr.statusText);
-			// 	}
-			// })
+			$('#result').load('test.html', function(responseTxt, statusTxt, xhr) {
+				if(statusTxt == 'success') {
+					alert('Everything went fine');
+				} else if(statusTxt == 'error') {
+					alert('Error: ' + xhr.statusText);
+				}
+			})
 
 			/**
 			 * jQuery $.get() method
