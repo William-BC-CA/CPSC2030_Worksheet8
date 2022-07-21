@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Intro to jQuery | AJAX</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<style>
+		body{
+			font-size: 17px;
+			font-family: Arial, Helvetica, sans-serif;
+			background: #f4f4f4;
+			line-height: 1.5em;
+		}
+		header{
+			background: slategray;
+			color:#fff;
+			padding:20px;
+			text-align: center;
+			border-bottom: 4px #000 solid;
+			margin-bottom: 10px;
+		}
+		#container{
+			width:90%;
+			margin:auto;
+			padding:10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Intro to jQuery | AJAX </h1>
+	</header>
+	<div id="container">
+		<div id="result"></div>
+		<ul id="users"></ul>
+		<form action="https://jsonplaceholder.typicode.com/posts">
+			<input type="text" id="title" placeholder="Enter title">
+			<br>
+			<textarea id="body" placeholder="post body"></textarea>
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	<script>
+		$(document).ready(function(){
+			/**
+			 * jQuery load() method
+			 * -loads data from a server & inserts returned data into selected element
+			 */
+			//$('#result').load('test.html');
+
+			 /**
+			 * jquery load() method with optional callback function
+			 * The optional callback parameter specifies a callback function 
+			 * to run when the load() method is completed. 
+			 * The callback function can have different parameters: 
+			 * 	1 - responseTxt - contains the resulting content if the call succeeds
+			 *  2 - statusTxt - contains the status of the call
+			 *  3 - xhr - contains the XMLHttpRequest object
+			 */
+			// $('#result').load('test.html', function(responseTxt, statusTxt, xhr) {
+			// 	if(statusTxt == 'success') {
+			// 		alert('Everything went fine');
+			// 	} else if(statusTxt == 'error') {
+			// 		alert('Error: ' + xhr.statusText);
+			// 	}
+			// })
+
+			/**
+			 * jQuery $.get() method
+			 * - requests data from the server with an HTTP GET request
+			 */
+			// $.get('test.html', function(data) {
+			// 	$('#result').html(data);
+			// })
+
+			 /**
+			 * jQuery $.getJSON() method
+			 * - loads JSON-encoded data from server using a HTTP GET request
+			 */
+			// $.getJSON('user.json', function(data){
+			// 	$.each(data, function(i, user) {
+			// 		$('#users').append('<li>' + user.firstName + '</li>')
+			// 	})
+			// })
+			
+			/**
+			 * jQuery ajax() method
+			 *  - performs an AJAX request
+			 */
+			// $.ajax({
+			// 	method: 'GET',
+			// 	url: 'https://jsonplaceholder.typicode.com/posts',
+			// 	dataType: 'json'
+			// }).done(function(data){
+			// 	$.map(data, function(post, i) {
+			// 		$('#result').append('<h3>'+post.title+'</h3><p>' + post.body + '</p>');
+			// 	})
+			// })
+
+			/**
+			 * jQuery .post() method
+			 *  - send data to the server using a HTTP POST request.
+			 */
+			$('form').submit(function(e){
+				e.preventDefault();
+				
+				var title = $('#title').val();
+				var body = $('#body').val();
+				var url = $(this).attr('action');
+
+				$.post(url, {title: title, body: body})
+					.done(function(data){
+						console.log('Post Saved');
+						console.log(data)
+					})
+			})
+		});
+	</script>
+</body>
+</html>
